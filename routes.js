@@ -33,6 +33,18 @@ const requestHandler = (req, res) => {
     res.write('</html>');
     res.end();
 };
+// 1.module.exports = requestHandler;
 
-module.exports = requestHandler;
+// 2.module.exports = {
+//     handler: requestHandler,
+//     someText: 'Some hard coded text'
+// };
+
+// 3.module.exports.handler = requestHandler;
+// module.exports.someText = 'some text';
+
+//3 cách trên và cách dưới đều cho ra kết quả giống nhau.
+
+exports.handler = requestHandler;
+exports.someText = 'Some hard code text';
 
