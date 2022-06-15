@@ -11,9 +11,11 @@ exports.getProducts = (req, res, next) => {
 };
 
 exports.getProduct = (req, res, next) => {
-  const prodId = red.params.productId;
-  console.log(prodId);
-  red.redirect('/');
+  const prodId = req.params.productId;
+  Product.findById(prodId, product =>{
+    console.log(product);
+  });
+  res.redirect('/');
 }
 
 exports.getIndex = (req, res, next) => {
