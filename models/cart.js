@@ -36,9 +36,7 @@ module.exports = class Cart {
                 console.log(err);
             });
         });
-    
-
-    
+       
 
    }
 }
