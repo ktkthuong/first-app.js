@@ -19,14 +19,12 @@ exports.postAddProduct = (req, res, next) => {
 };
 
 exports.getEditProduct = (req, res, next) => {
-  const editMode = req.query.edit;
-  
+  const editMode = req.query.edit;  
   if(!editMode) {
     return res.redirect('/');
   }
   const prodId = req.params.productId;
   Product.findById(prodId, product => {
-    
     if(!product){
       return res.redirect('/');
     }
@@ -36,9 +34,12 @@ exports.getEditProduct = (req, res, next) => {
       editing: editMode,
       product: product
     });
-  });
-  
+  });  
 };
+
+exports.postEditProduct = (req, res, next) => {
+  
+}
 
 exports.getProducts = (req, res, next) => {
   Product.fetchAll(products => {
