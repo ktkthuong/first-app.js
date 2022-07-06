@@ -8,6 +8,8 @@ class Product {
     this.imageUrl = imageUrl;
     this.description = description;
     this._id = new mongodb.ObjectId(id);
+    //this._id = id ? new mongodb.ObjectId(id) : null; không dùng được, đã thử nhưng báo lỗi
+    //lỗi TypeError: Cannot read properties of undefined (reading 'then')
   }
 
   save(){
