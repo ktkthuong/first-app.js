@@ -2,7 +2,7 @@ const mongodb = require('mongodb');
 const getDb = require('../util/database').getDb;
 
 class Product {
-  constructor(title, price, description,imageUrl, id){
+  constructor(title, price, description,imageUrl, id, userId){
     this.title = title;
     this.price = price;
     this.imageUrl = imageUrl;
@@ -10,6 +10,7 @@ class Product {
     this._id = new mongodb.ObjectId(id);
     //this._id = id ? new mongodb.ObjectId(id) : null; không dùng được, đã thử nhưng báo lỗi
     //lỗi TypeError: Cannot read properties of undefined (reading 'then')
+    this.userId = userId;
   }
 
   save(){
