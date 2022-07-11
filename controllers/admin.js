@@ -1,5 +1,6 @@
+const { populate } = require('../models/product');
+const product = require('../models/product');
 const Product = require('../models/product');
-
 
 exports.getAddProduct = (req, res, next) => {
   res.render('admin/edit-product', {
@@ -30,8 +31,7 @@ exports.postAddProduct = (req, res, next) => {
   })
   .catch(err => {
     console.log(err);
-  });
-  
+  });  
 };
 
 exports.getEditProduct = (req, res, next) => {
@@ -78,7 +78,9 @@ exports.postEditProduct = (req, res, next) => {
 
 exports.getProducts = (req, res, next) => {
   Product.find()
-  .then(products => {
+  //.select('title price -_id')
+  //.populate('userId', 'name')
+  .then(products => {    
     res.render('admin/products', {
       prods: products,
       pageTitle: 'Admin Products',
