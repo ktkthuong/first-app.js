@@ -10,7 +10,6 @@ exports.getProducts = (req, res, next) => {
         pageTitle: 'All Products',
         path: '/products',
         isAuthenticated: req.isLoggedIn
-        //định nghĩa isAuthenticated từ navigation.ejs
       });
     })
     .catch(err => {
@@ -27,7 +26,6 @@ exports.getProduct = (req, res, next) => {
         pageTitle: product.title,
         path: '/products',
         isAuthenticated: req.isLoggedIn
-        //định nghĩa isAuthenticated từ navigation.ejs
       });
     })
     .catch(err => console.log(err));
@@ -41,7 +39,6 @@ exports.getIndex = (req, res, next) => {
         pageTitle: 'Shop',
         path: '/',
         isAuthenticated: req.isLoggedIn
-        //định nghĩa isAuthenticated từ navigation.ejs
       });
     })
     .catch(err => {
@@ -60,7 +57,6 @@ exports.getCart = (req, res, next) => {
         pageTitle: 'Your Cart',
         products: products,
         isAuthenticated: req.isLoggedIn
-        //định nghĩa isAuthenticated từ navigation.ejs
       });
     })
     .catch(err => console.log(err));
@@ -122,7 +118,6 @@ exports.getOrders = (req, res, next) => {
         pageTitle: 'Your Orders',
         orders: orders,
         isAuthenticated: req.isLoggedIn
-        //định nghĩa isAuthenticated từ navigation.ejs
       });
     })
     .catch(err => console.log(err));

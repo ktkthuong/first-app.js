@@ -4,6 +4,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
+// const cookieParser = require('cookie-parse');
+
 const errorController = require('./controllers/error');
 const User = require('./models/user');
 
@@ -18,6 +20,7 @@ const authRoutes = require('./routes/auth');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
+// app.use(cookieParser);
 
 app.use((req, res, next) =>{
     User.findById('62cc4d82e1ca9a9ab665f6a0')

@@ -15,9 +15,7 @@
             <li class="main-header__item">
                 <a class="<%= path === '/orders' ? 'active' : '' %>" href="/orders">Orders</a>
             </li>
-            <% if (isAuthenticated) { %> 
-                <!-- tạo isAuthenticated bên này thì phải định nghĩa bên addmin.js nếu ko nó sẽ báo lỗi 
-                isAuthenticated is not defined-->
+            <% if (isAuthenticated) { %>
             <li class="main-header__item">
                 <a class="<%= path === '/admin/add-product' ? 'active' : '' %>" href="/admin/add-product">Add Product
                 </a>
