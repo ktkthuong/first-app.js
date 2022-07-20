@@ -9,7 +9,8 @@ const MongoDBStore = require('connect-mongodb-session')(session);
 const errorController = require('./controllers/error');
 const User = require('./models/user');
 
-const MONGODB_URI = 'mongodb+srv://ktkthuong:30062010phat@cluster0.gwa1tdk.mongodb.net/shop?retryWrites=true&w=majority';
+const MONGODB_URI = 
+'mongodb+srv://ktkthuong:30062010phat@cluster0.gwa1tdk.mongodb.net/shop?retryWrites=true&w=majority';
 
 const app = express();
 const store = new MongoDBStore({
@@ -35,14 +36,14 @@ app.use(
     })
 );
 
-app.use((req, res, next) =>{
-    User.findById('62cc4d82e1ca9a9ab665f6a0')
-    .then(user => {
-        req.user = user;
-        next();
-    })
-    .catch(err => console.log(err));
-});
+// app.use((req, res, next) =>{
+//     User.findById('62cc4d82e1ca9a9ab665f6a0')
+//     .then(user => {
+//         req.user = user;
+//         next();
+//     })
+//     .catch(err => console.log(err));
+// });
 
 app.use('/admin', adminRoutes);
 app.use(shopRoutes);
