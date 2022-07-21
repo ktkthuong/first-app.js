@@ -48,15 +48,6 @@ app.use((req, res, next) => {
     .catch(err => console.log(err));
 });
 
-// app.use((req, res, next) =>{
-//     User.findById('62cc4d82e1ca9a9ab665f6a0')
-//     .then(user => {
-//         req.user = user;
-//         next();
-//     })
-//     .catch(err => console.log(err));
-// });
-
 app.use('/admin', adminRoutes);
 app.use(shopRoutes);
 app.use(authRoutes);
@@ -64,23 +55,8 @@ app.use(authRoutes);
 app.use(errorController.get404);
 
 mongoose
-    .connect(
-        MONGODB_URI
-    )
-    .then(result => {
-        User.findOne().then(user => {
-            if(!user) {
-                const user = new User({
-                    name: 'Max',
-                    email: 'max@test.com',
-                    cart: {
-                        items: []
-                    }
-                });
-                user.save();
-            }
-        });
-        
+    .connect(MONGODB_URI)
+    .then(result => {       
         app.listen(3002);
     })
     .catch(err => {
