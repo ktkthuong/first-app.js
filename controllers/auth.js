@@ -1,3 +1,5 @@
+const crypto = require('crypto');
+
 const bcrypt = require('bcryptjs');
 
 const User = require('../models/user');
@@ -76,31 +78,25 @@ exports.postSignup = (req, res, next) => {
       path: '/signup',
       pageTitle: 'Signup',
       errorMessage: errors.array()[0].msg
-    });;
-  }
-  User.findOne({email: email})
-  .then(userDoc => {
-    if(userDoc) {
-      req.flash('error', 'E-mail exists already, please pick a different one.');
-      return res.redirect('/signup');
-    }
-    return bcrypt
-    .hash(password, 12)
-    .then(hashedPassword => {
-      const user = new User({
-        email: email,
-        password: hashedPassword,
-        cart: {items: []}
-      });
-      return user.save();
-    })
-    .then(result => {
-      res.redirect('/login');
-    });    
-  })  
+    });
+  } 
+    
+  bcrypt
+  .hash(password, 12)
+  .then(hashedPassword => {
+    const user = new User({
+      email: email,
+      password: hashedPassword,
+      cart: {items: []}
+    });
+    return user.save();
+  })
+  .then(result => {
+    res.redirect('/login');
+  })   
   .catch(err => {
     console.log(err);
-  });
+  })
 };
 
 exports.postLogout = (req, res, next) => {
@@ -121,5 +117,31 @@ exports.getReset = (req, res, next) => {
     path: '/reset',
     pageTitle: 'Reset Password',
     errorMessage: message  
+  });
+};
+
+exports.postReset = (req, res, next) => {
+  crypto.randomBytes(32,(err, buffer) => {
+    if (err) {
+      console.log(err);
+      return res.redirect('/reset');
+    }
+    const token = buffer.toString('hex');
+    User.findOne({email: req.body.email})
+    .then(user => {
+      if (!user) {
+        req.flash('error', 'No account with that email found.');
+        return res.redirect('/reset');
+      }
+      user.resetToken = token;
+      user.resetTokenExpiration = Date.now() + 3600000;
+      return user.save();
+    })
+    .then(result => {
+      res.redirect('/reset');
+    })
+    .catch(err => {
+      console.log(err);
+    });
   });
 };
