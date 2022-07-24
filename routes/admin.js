@@ -37,7 +37,7 @@ router.get('/edit-product/:productId', isAuth, adminController.getEditProduct);
 router.post('/edit-product',  
     [
         body('title')
-            .isAlphanumeric()
+            .isString()
             .isLength({ min: 3 })
             .trim(),
         body('imageUrl').isURL(),
