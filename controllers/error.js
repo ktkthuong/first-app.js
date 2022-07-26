@@ -13,4 +13,4 @@ exports.get500 = (req, res, next) => {
     isAuthenticated: req.session.isLoggedIn
   });
 };
-//
+//Mã trạng thái có sẵn
