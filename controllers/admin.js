@@ -145,7 +145,7 @@ exports.postEditProduct = (req, res, next) => {
         description: updatedDesc,
         _id: prodId
       }, 
-      errorMessage: 'Attached file is not image',
+      errorMessage: 'Attached file is not image.',
       validationErrors: []
     });
   }
